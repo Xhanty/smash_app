@@ -2,9 +2,12 @@ package com.sssas.smash.UsersPackage;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,17 +19,23 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 import com.sssas.smash.LoginActivity;
 import com.sssas.smash.R;
 import com.sssas.smash.Utils.DatabaseHelper;
+import com.sssas.smash.Utils.UtilsNetwork;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeActivity extends AppCompatActivity {
 
     FragmentManager fragmentManager;
     BottomAppBar bottomNav;
     DatabaseHelper DBSqlite;
+    AppCompatImageView icon_wifi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        icon_wifi = findViewById(R.id.icon_wifi_home);
 
         DBSqlite = new DatabaseHelper(this);
 
@@ -37,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
             HomeFragment homeFragment = new HomeFragment();
             fragmentManager.beginTransaction().replace(R.id.content_menu, homeFragment).commit();
         }
+
+        valid_wifi();
 
         bottomNav.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -61,6 +72,21 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        new Timer().scheduleAtFixedRate(new TimerTask(){
+            @Override
+            public void run(){
+                valid_wifi();
+            }
+        },0,5000);
+    }
+
+    private void valid_wifi() {
+        if(UtilsNetwork.isOnline(this)){
+            icon_wifi.setImageResource(R.drawable.ic_online);
+        } else {
+            icon_wifi.setImageResource(R.drawable.ic_offline);
+        }
     }
 
     private void logout() {
