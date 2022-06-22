@@ -11,11 +11,16 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sssas.smash.LoginActivity;
 import com.sssas.smash.R;
 import com.sssas.smash.Utils.DatabaseHelper;
@@ -30,12 +35,14 @@ public class HomeActivity extends AppCompatActivity {
     BottomAppBar bottomNav;
     DatabaseHelper DBSqlite;
     AppCompatImageView icon_wifi;
+    FloatingActionButton search_beneficiario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         icon_wifi = findViewById(R.id.icon_wifi_home);
+        search_beneficiario = findViewById(R.id.menu_search);
 
         DBSqlite = new DatabaseHelper(this);
 
@@ -70,6 +77,23 @@ public class HomeActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.content_menu, fragment).commit();
                 }
                 return true;
+            }
+        });
+
+        search_beneficiario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(HomeActivity.this, R.style.BottomSheetDialogTheme);
+                View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_search_beneficiario, (LinearLayout)findViewById(R.id.container_modal_search));
+                bottomSheetView.findViewById(R.id.btn_search_bene).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(HomeActivity.this, "Buscando...", Toast.LENGTH_SHORT).show();
+                        bottomSheetDialog.dismiss();
+                    }
+                });
+                bottomSheetDialog.setContentView(bottomSheetView);
+                bottomSheetDialog.show();
             }
         });
 
