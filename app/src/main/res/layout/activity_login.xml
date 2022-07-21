@@ -117,18 +117,27 @@
                     android:textAllCaps="false"
                     android:text="¿Olvidaste la contraseña?" />
 
-                <Button
-                    android:onClick="InitLogin"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ingresar"
-                    android:fontFamily="@font/lato_bold"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
-                    android:textSize="17dp"
-                    android:background="@drawable/button_primary"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <Button
+                        android:onClick="InitLogin"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Ingresar"
+                        android:fontFamily="@font/lato_bold"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="17dp"
+                        android:background="@drawable/button_primary"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

@@ -23,6 +23,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sssas.smash.LoginActivity;
 import com.sssas.smash.Models.Beneficiario;
 import com.sssas.smash.R;
+import com.sssas.smash.UsersPackage.Beneficiario.BeneficiarioExtendidoActivity;
+import com.sssas.smash.UsersPackage.Beneficiario.BeneficiarioRapidoActivity;
 import com.sssas.smash.Utils.ConnectionSql;
 import com.sssas.smash.Utils.DatabaseHelper;
 import com.sssas.smash.Utils.UtilsNetwork;
@@ -173,9 +175,54 @@ public class HomeActivity extends AppCompatActivity {
 
                             try {
                                 ResultSet rs = stm.executeQuery(query);
-                                Log.e("QUERY", query);
+                                //Log.e("QUERY", query);
                                 if (!rs.next()) {
-                                    Toast.makeText(HomeActivity.this, "No se encontraron beneficiarios", Toast.LENGTH_SHORT).show();Toast.makeText(HomeActivity.this, "No se encontraron beneficiarios", Toast.LENGTH_SHORT).show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+
+                                    builder.setTitle("Mensaje");
+                                    builder.setMessage("No se encontró el beneficiario, ¿Deseas registrarlo?");
+
+                                    builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                            AlertDialog.Builder builder_two = new AlertDialog.Builder(HomeActivity.this);
+
+                                            builder_two.setTitle("Mensaje");
+                                            builder_two.setMessage("¿Registrarlo rápido o extendido?");
+
+                                            builder_two.setPositiveButton("Rápido", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intent = new Intent(HomeActivity.this, BeneficiarioRapidoActivity.class);
+                                                    startActivity(intent);
+                                                }
+                                            });
+
+                                            builder_two.setNegativeButton("Extendido", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intent = new Intent(HomeActivity.this, BeneficiarioExtendidoActivity.class);
+                                                    startActivity(intent);
+                                                }
+                                            });
+
+                                            builder_two.create();
+                                            builder_two.show();
+                                        }
+                                    });
+
+                                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    });
+
+                                    builder.create();
+                                    builder.show();
+
+                                    //Toast.makeText(HomeActivity.this, "No se encontraron beneficiarios", Toast.LENGTH_SHORT).show();Toast.makeText(HomeActivity.this, "No se encontraron beneficiarios", Toast.LENGTH_SHORT).show();
                                 }
 
                                 else {

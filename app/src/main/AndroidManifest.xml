@@ -29,21 +29,29 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".UsersPackage.Beneficiario.RemisionesActivity"
+            android:name=".UsersPackage.Beneficiario.BeneficiarioExtendidoActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".UsersPackage.Beneficiario.BeneficiarioRapidoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".UsersPackage.Beneficiario.RemisionesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UsersPackage.Beneficiario.EncuestasActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UsersPackage.Beneficiario.AyudasActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UsersPackage.Beneficiario.FamiliaActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UsersPackage.HomeActivity"
             android:exported="false"

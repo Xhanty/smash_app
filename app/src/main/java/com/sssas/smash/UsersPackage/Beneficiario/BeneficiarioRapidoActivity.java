@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,55 +17,47 @@ import com.shuhart.stepview.StepView;
 import com.sssas.smash.R;
 import com.sssas.smash.Utils.DatePickerFragment;
 
-public class FamiliaActivity extends AppCompatActivity implements View.OnClickListener {
+public class BeneficiarioRapidoActivity extends AppCompatActivity implements View.OnClickListener {
 
     StepView stepView;
-
     int stepIndex = 0;
-    Button next_1, next_2, next_3, guardar;
-    Button back_1, back_2, back_3;
-    LinearLayout step1, step2, step3, step4;
+    Button next_1, next_2, guardar;
+    Button back_1, back_2;
+    LinearLayout step1, step2, step3;
     TextInputEditText fecha_nacimiento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_familia);
+        setContentView(R.layout.activity_beneficiario_rapido);
 
-        next_1 = findViewById(R.id.next_add_f_1);
+        next_1 = findViewById(R.id.next_add_b_r_1);
         next_1.setOnClickListener(this);
 
-        next_2 = findViewById(R.id.next_add_f_2);
+        next_2 = findViewById(R.id.next_add_b_r_2);
         next_2.setOnClickListener(this);
 
-        next_3 = findViewById(R.id.next_add_f_3);
-        next_3.setOnClickListener(this);
-
-        back_1 = findViewById(R.id.back_add_f_2);
+        back_1 = findViewById(R.id.back_add_b_r_2);
         back_1.setOnClickListener(this);
 
-        back_2 = findViewById(R.id.back_add_f_3);
+        back_2 = findViewById(R.id.back_add_b_r_3);
         back_2.setOnClickListener(this);
 
-        back_3 = findViewById(R.id.back_add_f_4);
-        back_3.setOnClickListener(this);
-
-        guardar = findViewById(R.id.next_add_f_4);
+        guardar = findViewById(R.id.next_add_b_r_3);
         guardar.setOnClickListener(this);
 
-        step1 = findViewById(R.id.div_step_1_add_fm);
-        step2 = findViewById(R.id.div_step_2_add_fm);
-        step3 = findViewById(R.id.div_step_3_add_fm);
-        step4 = findViewById(R.id.div_step_4_add_fm);
+        step1 = findViewById(R.id.div_step_1_add_br);
+        step2 = findViewById(R.id.div_step_2_add_br);
+        step3 = findViewById(R.id.div_step_3_add_br);
 
-        stepView = findViewById(R.id.step_add_familia);
+        stepView = findViewById(R.id.step_add_bene_rap);
         stepView.getState()
                 .animationType(StepView.ANIMATION_ALL)
-                .stepsNumber(4)
+                .stepsNumber(3)
                 .animationDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime))
                 .commit();
 
-        fecha_nacimiento = findViewById(R.id.txt_date_add_familia);
+        fecha_nacimiento = findViewById(R.id.txt_date_add_ben_rap);
 
         fecha_nacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,71 +67,47 @@ public class FamiliaActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
+    @Override
     public void onClick(View v) {
-        // Perform action on click
         switch(v.getId()) {
-            case R.id.next_add_f_1:
+            case R.id.next_add_b_r_1:
                 step1.setVisibility(View.INVISIBLE);
                 step2.setVisibility(View.VISIBLE);
                 step3.setVisibility(View.INVISIBLE);
-                step4.setVisibility(View.INVISIBLE);
 
                 stepIndex = 1;
                 stepView.go(stepIndex, true);
                 break;
 
-            case R.id.next_add_f_2:
+            case R.id.next_add_b_r_2:
                 step1.setVisibility(View.INVISIBLE);
                 step2.setVisibility(View.INVISIBLE);
                 step3.setVisibility(View.VISIBLE);
-                step4.setVisibility(View.INVISIBLE);
 
                 stepIndex = 2;
                 stepView.go(stepIndex, true);
                 break;
 
-            case R.id.next_add_f_3:
-                step1.setVisibility(View.INVISIBLE);
-                step2.setVisibility(View.INVISIBLE);
-                step3.setVisibility(View.INVISIBLE);
-                step4.setVisibility(View.VISIBLE);
-
-                stepIndex = 3;
-                stepView.go(stepIndex, true);
-                break;
-
-            case R.id.next_add_f_4:
+            case R.id.next_add_b_r_3:
                 Toast.makeText(this, "Guardar", Toast.LENGTH_SHORT).show();
                 break;
 
             //REGRESAR
-            case R.id.back_add_f_2:
+            case R.id.back_add_b_r_2:
                 step1.setVisibility(View.VISIBLE);
                 step2.setVisibility(View.INVISIBLE);
                 step3.setVisibility(View.INVISIBLE);
-                step4.setVisibility(View.INVISIBLE);
 
                 stepIndex = 0;
                 stepView.go(stepIndex, true);
                 break;
 
-            case R.id.back_add_f_3:
+            case R.id.back_add_b_r_3:
                 step1.setVisibility(View.INVISIBLE);
                 step2.setVisibility(View.VISIBLE);
                 step3.setVisibility(View.INVISIBLE);
-                step4.setVisibility(View.INVISIBLE);
 
                 stepIndex = 1;
-                stepView.go(stepIndex, true);
-                break;
-
-            case R.id.back_add_f_4:
-                step1.setVisibility(View.INVISIBLE);
-                step2.setVisibility(View.INVISIBLE);
-                step3.setVisibility(View.VISIBLE);
-                step4.setVisibility(View.INVISIBLE);
-
-                stepIndex = 2;
                 stepView.go(stepIndex, true);
                 break;
         }
