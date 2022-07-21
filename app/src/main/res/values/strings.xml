@@ -15,4 +15,17 @@
     <string name="menu_logout">Salir</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="documentos">
+        <item>DNI del país de origen</item>
+        <item>Cédula de extranjería</item>
+        <item>Certificado o registro de nacimiento</item>
+        <item>Otro documento que constata su identidad</item>
+        <item>Pasaporte</item>
+        <item>Pérdida de documentos - constancia</item>
+        <item>Permiso de permanencia o residencia</item>
+        <item>Registro de personas físicas (CPF) – Brasil</item>
+        <item>Solicitante de refugio - Carné o salvoconducto</item>
+        <item>Visa (de cualquier tipo)</item>
+    </string-array>
 </resources>
